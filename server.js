@@ -17,13 +17,13 @@ const db = mysql.createConnection({
       database: process.env.DB_NAME || "consumerdb",
 });
 
-// if (process.env.WEBSITE_RESOURCE_GROUP != undefined) {
-//     // We are running in Azure App Service
-//     // Use Azure Database for MySQL
-//     db.ssl = {
-//       ca: fs.readFileSync("./azure-db-ssl-cert/DigiCertGlobalRootCA.crt.pem"),
-//     };
-//   }
+if (process.env.WEBSITE_RESOURCE_GROUP != undefined) {
+    // We are running in Azure App Service
+    // Use Azure Database for MySQL
+    db.ssl = {
+      ca: fs.readFileSync("./azure-db-ssl-cert/DigiCertGlobalRootCA.crt.pem"),
+    };
+  }
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
