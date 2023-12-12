@@ -10,20 +10,20 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
-const db = mysql.createConnection({
+const dbConfig = {
   host: process.env.DB_HOST || "localhost",
-      user: process.env.DB_USER || "root",
-      password: process.env.DB_PASSWORD || "root",
-      database: process.env.DB_NAME || "consumerdb",
-});
+  user: process.env.DB_USER || "team12user",
+  password: process.env.DB_PASSWORD || "awateam12",
+  database: process.env.DB_NAME || "consumerdb",
+};
 
-if (process.env.WEBSITE_RESOURCE_GROUP != undefined) {
-    // We are running in Azure App Service
-    // Use Azure Database for MySQL
-    db.ssl = {
+if (process.env.WEBSITE_RESOURCE_GROUP !== undefined) {
+  // We are running in Azure App Service
+  // Use Azure Database for MySQL
+  dbConfig.ssl = {
       ca: fs.readFileSync("./azure-db-ssl-cert/DigiCertGlobalRootCA.crt.pem"),
-    };
-  }
+  };
+}
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
