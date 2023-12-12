@@ -20,7 +20,7 @@ const db = mysql.createConnection({
 if (process.env.WEBSITE_RESOURCE_GROUP != undefined) {
     // We are running in Azure App Service
     // Use Azure Database for MySQL
-    dbConfig.ssl = {
+    db.ssl = {
       ca: fs.readFileSync("./azure-db-ssl-cert/DigiCertGlobalRootCA.crt.pem"),
     };
   }
