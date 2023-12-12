@@ -2,6 +2,7 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const port = process.env.PORT || 3001;
 
 const app = express();
 
@@ -218,8 +219,8 @@ async function insertNotification(type, content, userid) {
 
 
 
-app.listen(3002, () => {
-  console.log("server for simulator is running on port 3002");
+app.listen(port, () => {
+    console.log(`simulator listening on port ${port}`)
   db.connect(function (err) {
     if (err) throw err;
     console.log("database connected");
