@@ -2,7 +2,7 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3100;
 
 const app = express();
 
@@ -12,14 +12,12 @@ app.use(bodyParser.json());
 
 const db = mysql.createConnection({
   host: process.env.DB_HOST || "localhost",
-      user: process.env.DB_USER || "team12user",
-      password: process.env.DB_PASSWORD || "awateam12",
+      user: process.env.DB_USER || "root",
+      password: process.env.DB_PASSWORD || "root",
       database: process.env.DB_NAME || "consumerdb",
 });
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-  });
+
 
 app.post("/cabinets", (req, res) => {
   const { code } = req.body;
