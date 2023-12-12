@@ -16,6 +16,10 @@ const db = mysql.createConnection({
       database: process.env.DB_NAME || "consumerdb",
 });
 
+app.get("/", (req, res) => {
+    res.send("Hello World!");
+  });
+
 app.post("/cabinets", (req, res) => {
   const { code } = req.body;
   db.query(
